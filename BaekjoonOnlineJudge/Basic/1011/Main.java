@@ -6,27 +6,39 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int count=0;
-        int j=1;
-        int fact=0;
+        StringTokenizer st;
+        int countx=0;
+        int county = 0;
+        int j=0;
         int t = Integer.parseInt(br.readLine());
-        for(int i=0; i<t; t++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i=0; i<t; i++){
+            st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            while((x + fact) < (y - 1)){
+            while(true){
+                j++;
 
+                x = x + j;
+                countx++;
+                if(x>=y){
+                    break;
+                }
+                y = y - j;
+                county++;
+                if(y<=x){
+                    break;
+                }
             }
-            count++;
-            bw.write(String.valueOf(count));
 
-            count=0;
-            j=1;
-            fact=0;
-            br.close();
-            bw.close();
+            bw.write(String.valueOf(countx+county)+"\n");
+
+            countx=0;
+            county=0;
+            j=0;
+
         }
+        br.close();
+        bw.close();
     }
 }
