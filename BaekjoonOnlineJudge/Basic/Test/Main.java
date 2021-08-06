@@ -1,60 +1,45 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args)throws IOException{
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int temp;
 
-        int m = Integer.parseInt(br.readLine());
-        int n = Integer.parseInt(br.readLine());
-        int arr[] = new int[n-m];
-        int j=0;
-        int sum=0;
-        int min;
-        if(m!=n){
-            for(int i=m; i<=n; i++){
-                if(isprimenumber(i)==1){
-                    arr[j] = i;
-                    j++;
-                }
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+
+        while(a!=0){
+            if(a>b && a>c){
+                temp = a;
+                a = c;
+                c = temp;
             }
-            for(int k=0; k<n-m; k++){
-                sum = sum + arr[k];
+            else if(b>a && b>c){
+                temp = b;
+                b = c;
+                c = temp;
             }
-            if(!(arr[0] >=m && arr[0] <=n)){
-                bw.write("-1");
-            }
-            else{
-                min = arr[0];
-                bw.write(String.valueOf(sum)+"\n");
-                bw.write(String.valueOf(min)+"\n");
-            }
-        }
-        else{
-            if(isprimenumber(m)==1){
-                bw.write(String.valueOf(m)+"\n");
-                bw.write(String.valueOf(m)+"\n");
+
+            if((Math.pow(a,2) + Math.pow(b,2))==Math.pow(c,2)){
+                bw.write("right"+"\n");
             }
             else{
-                bw.write("-1");
+                bw.write("wrong"+"\n");
             }
+
+            st = new StringTokenizer(br.readLine());
+            a = Integer.parseInt(st.nextToken());
+            b = Integer.parseInt(st.nextToken());
+            c = Integer.parseInt(st.nextToken());
         }
+
         bw.close();
         br.close();
     }
 
-    private static int isprimenumber(int n){
-        if(n==1){
-            return 0;
-        }
-        else{
-            for(int i=2; i*i<=n; i++){
-                if(n%i ==0){
-                    return 0;
-                }
-            }
-            return 1;
-        }
-    }
 }
