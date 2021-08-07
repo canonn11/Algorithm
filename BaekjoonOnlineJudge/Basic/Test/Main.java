@@ -1,42 +1,30 @@
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args)throws IOException{
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int temp;
+        String input = br.readLine();
+        StringBuilder sb = new StringBuilder();
+        int l1,l2,l3;
+        for(int i=input.length()-1; i>1;i-=3){
+            l1 = (int) (input.charAt(i) -48);
+            l2 = (int) ((input.charAt(i - 1) -48)*2);
+            l3 = (int) ((input.charAt(i - 2) -48)*4);
 
-        int a = Integer.parseInt(st.nextToken());
-        int b = Integer.parseInt(st.nextToken());
-        int c = Integer.parseInt(st.nextToken());
-
-        while(a!=0){
-            if(a>b && a>c){
-                temp = a;
-                a = c;
-                c = temp;
-            }
-            else if(b>a && b>c){
-                temp = b;
-                b = c;
-                c = temp;
-            }
-
-            if((Math.pow(a,2) + Math.pow(b,2))==Math.pow(c,2)){
-                bw.write("right"+"\n");
-            }
-            else{
-                bw.write("wrong"+"\n");
-            }
-
-            st = new StringTokenizer(br.readLine());
-            a = Integer.parseInt(st.nextToken());
-            b = Integer.parseInt(st.nextToken());
-            c = Integer.parseInt(st.nextToken());
+            sb.append((l1+l2+l3));
         }
+        if(input.length()%3 ==1){
+            sb.append((int)input.charAt(0)-48);
+        }
+        else if(input.length() %3 ==2){
+            sb.append((int)(input.charAt(1)-48)+(int)(((input.charAt(0)-48)*2)));
+        }
+        sb.reverse();
+
+
+        bw.write(sb.toString());
 
         bw.close();
         br.close();
