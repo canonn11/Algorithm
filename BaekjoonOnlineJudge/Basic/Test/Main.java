@@ -7,25 +7,63 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         String input = br.readLine();
         StringBuilder sb = new StringBuilder();
-        int l1,l2,l3;
-        for(int i=input.length()-1; i>1;i-=3){
-            l1 = (int) (input.charAt(i) -48);
-            l2 = (int) ((input.charAt(i - 1) -48)*2);
-            l3 = (int) ((input.charAt(i - 2) -48)*4);
 
-            sb.append((l1+l2+l3));
+        switch(input.charAt(0)){
+            case '0':
+                sb.append(0);
+                break;
+            case '1':
+                sb.append("1");
+                break;
+            case '2':
+                sb.append("10");
+                break;
+            case'3':
+                sb.append("11");
+                break;
+            case '4':
+                sb.append("100");
+                break;
+            case '5':
+                sb.append("101");
+                break;
+            case '6':
+                sb.append("110");
+                break;
+            case '7':
+                sb.append("111");
+                break;
         }
-        if(input.length()%3 ==1){
-            sb.append((int)input.charAt(0)-48);
+        for(int i=1; i<input.length(); i++){
+            switch(input.charAt(i)){
+                case '0':
+                    sb.append("000");
+                    break;
+                case '1':
+                    sb.append("001");
+                    break;
+                case '2':
+                    sb.append("010");
+                    break;
+                case'3':
+                    sb.append("011");
+                    break;
+                case '4':
+                    sb.append("100");
+                    break;
+                case '5':
+                    sb.append("101");
+                    break;
+                case '6':
+                    sb.append("110");
+                    break;
+                case '7':
+                    sb.append("111");
+                    break;
+            }
         }
-        else if(input.length() %3 ==2){
-            sb.append((int)(input.charAt(1)-48)+(int)(((input.charAt(0)-48)*2)));
-        }
-        sb.reverse();
-
 
         bw.write(sb.toString());
-
         bw.close();
         br.close();
     }
