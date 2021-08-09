@@ -24,17 +24,17 @@ public class Main {
             int n1 = (n / 2) - 1;
             int n2 = (n / 2) + 1;
             if (n == 4 || n == 6) {
-                n1 = n / 2;
-                n2 = n / 2;
                 count++;
             }
             else{
                 while(n1>1){
-                    if ((n1 % 2) == 0 && (n2 % 2 == 0)) {
+                    if ((n1 % 2 == 0) && (n2 % 2 == 0)) {
                         if ((n1 + 1) == (n2 - 1) && isPrime[n1 + 1]) {
                             n1 = n / 2;
                             n2 = n / 2;
                             count++;
+                            n1 -= 2;
+                            n2 += 2;
                         } else {
                             n1 -= 1;
                             n2 += 1;
@@ -42,9 +42,13 @@ public class Main {
                     }
                     else if (isPrime[n1] && isPrime[n2]) {
                         count++;
+                        n1 -= 2;
+                        n2 += 2;
                     }
-                    n1 -= 2;
-                    n2 += 2;
+                    else{
+                        n1-=2;
+                        n2+=2;
+                    }
                 }
             }
             bw.write(String.valueOf(count)+"\n");
